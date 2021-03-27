@@ -3,9 +3,13 @@
 
 const initialState = {
     menu: [],
+<<<<<<< HEAD
     loading : true,
     items:  // Динамічно створюємо
         []
+=======
+    loading : true
+>>>>>>> 8c593d1d6a6039a030f6c3bc3219de8872bd14a6
 }
 
 const reducer = (state = initialState,action) => {
@@ -13,6 +17,7 @@ const reducer = (state = initialState,action) => {
     switch (action.type){
         case 'MENU_LOADED':
             return {
+<<<<<<< HEAD
                 ...state,    // REDUCER ПОВНІСТЮ ПЕРЕЗАПИСУЄ СТАТЕ , тому треба робити так
                 menu: action.payload,
                 loading:false
@@ -50,6 +55,10 @@ const reducer = (state = initialState,action) => {
                     ...state.items.slice(0,itemIndex),
                     ...state.items.slice(itemIndex+1)
                 ]
+=======
+                menu: action.payload,
+                loading:false
+>>>>>>> 8c593d1d6a6039a030f6c3bc3219de8872bd14a6
             }
         }
         
