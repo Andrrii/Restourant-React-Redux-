@@ -1,15 +1,11 @@
 
-// REDUCER ПОВНІСТЮ ПЕРЕЗАПИСУЄ СТАТЕ
+// REDUCER ПОВНІСТЮ ПЕРЕЗАПИСУЄ SТАТЕ
 
 const initialState = {
     menu: [],
-<<<<<<< HEAD
     loading : true,
     items:  // Динамічно створюємо
         []
-=======
-    loading : true
->>>>>>> 8c593d1d6a6039a030f6c3bc3219de8872bd14a6
 }
 
 const reducer = (state = initialState,action) => {
@@ -17,25 +13,39 @@ const reducer = (state = initialState,action) => {
     switch (action.type){
         case 'MENU_LOADED':
             return {
-<<<<<<< HEAD
-                ...state,    // REDUCER ПОВНІСТЮ ПЕРЕЗАПИСУЄ СТАТЕ , тому треба робити так
+                ...state,    // REDUCER ПОВНІСТЮ ПЕРЕЗАПИСУЄ SТАТЕ , тому треба робити так
                 menu: action.payload,
                 loading:false
             }
         case 'MENU_REQUESTED':
             return {
-                ...state,// REDUCER ПОВНІСТЮ ПЕРЕЗАПИСУЄ СТАТЕ , тому треба робити так
-                menu: state.menu,// REDUCER ПОВНІСТЮ ПЕРЕЗАПИСУЄ СТАТЕ , тому треба робити так
+                ...state,// REDUCER ПОВНІСТЮ ПЕРЕЗАПИСУЄ SТАТЕ , тому треба робити так
+                menu: state.menu,// REDUCER ПОВНІСТЮ ПЕРЕЗАПИСУЄ SТАТЕ , тому треба робити так
                 loading:true
             }
         case "ITEM_ADD_TO_CARD":
             const id = action.payload
             const item = state.menu.find(item => item.id === id)
+            const x = state.items.find(x => x.id === id)
+            console.log(x)
+             if(x !==-1 && x!== undefined){
+                x.count++
+                x.price = x.value * x.count
+                return {
+                    ...state,
+                    items: [
+                        ...state.items,
+                    ]
+                }
+            }
+            else{
             const newItem = {
                 title:item.title,
-                price:item.price,
                 url:item.url,
-                id:item.id
+                id:item.id,
+                count:item.count,
+                price:item.price,
+                value:item.price
             }
             return {
                 ...state,
@@ -44,7 +54,7 @@ const reducer = (state = initialState,action) => {
                     newItem
                 ]
             }
-        
+            }
         case "ITEM_REMOVE_FROM_CARD": {
             const idx = action.payload; // index of element
             const itemIndex = state.items.findIndex(item => item.id === idx)
@@ -55,10 +65,6 @@ const reducer = (state = initialState,action) => {
                     ...state.items.slice(0,itemIndex),
                     ...state.items.slice(itemIndex+1)
                 ]
-=======
-                menu: action.payload,
-                loading:false
->>>>>>> 8c593d1d6a6039a030f6c3bc3219de8872bd14a6
             }
         }
         
